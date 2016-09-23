@@ -1,32 +1,32 @@
-1.	Добавить фото с набором ассоциаций (может и не быть ассоциаций, просто фото)
+п»ї1.	Р”РѕР±Р°РІРёС‚СЊ С„РѕС‚Рѕ СЃ РЅР°Р±РѕСЂРѕРј Р°СЃСЃРѕС†РёР°С†РёР№ (РјРѕР¶РµС‚ Рё РЅРµ Р±С‹С‚СЊ Р°СЃСЃРѕС†РёР°С†РёР№, РїСЂРѕСЃС‚Рѕ С„РѕС‚Рѕ)
 POST /photos HTTP/1.1
 <entry>
 	<photo></photo>
 	<author></author>
 	<associations> 
 		<word></word>
-		…
+		вЂ¦
 		<word></word>
 	</associations>
 </entry>
-Ответ:
+РћС‚РІРµС‚:
 HTTP /1.1 201 Created
 Location http://photoes/photo/id
 <entry>
-	<photo><link>…</link></photo>
-	<author>…</author>
+	<photo><link>вЂ¦</link></photo>
+	<author>вЂ¦</author>
 	<associations> 
-		<word>…</word>
-			…
-		<word>…</word>
+		<word>вЂ¦</word>
+			вЂ¦
+		<word>вЂ¦</word>
 	</associations>
 </entry>
 
-2.	Получить конкретное фото с ассоциациями
-(не обязательно id, может быть link)
+2.	РџРѕР»СѓС‡РёС‚СЊ РєРѕРЅРєСЂРµС‚РЅРѕРµ С„РѕС‚Рѕ СЃ Р°СЃСЃРѕС†РёР°С†РёСЏРјРё
+(РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ id, РјРѕР¶РµС‚ Р±С‹С‚СЊ link)
 	GET /photos/photo/id HTTP/1.1
-	Ответ:
-	304 not modified или 200 ОК с телом
+	РћС‚РІРµС‚:
+	304 not modified РёР»Рё 200 РћРљ СЃ С‚РµР»РѕРј
 <entry>
 	<photo>
 		<link></link>
@@ -37,13 +37,13 @@ Location http://photoes/photo/id
 			<author></author>
 			<word></word>
 		</word-entry>
-		…
+		вЂ¦
 	</associations>
 </entry>
 
-3.	Получить все фото со всеми ассоциациями
+3.	РџРѕР»СѓС‡РёС‚СЊ РІСЃРµ С„РѕС‚Рѕ СЃРѕ РІСЃРµРјРё Р°СЃСЃРѕС†РёР°С†РёСЏРјРё
 GET /photos/all
-Ответ:200 ОК
+РћС‚РІРµС‚:200 РћРљ
 <photos>
 	<entry>
 		<photo>
@@ -55,41 +55,41 @@ GET /photos/all
 			<author></author>
 			<word></word>
 		</word-entry>
-				…
+				вЂ¦
 	</associations>
 	</entry>
 	...
 </photos>
 
-4.	Добавить новые ассоциации
+4.	Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІС‹Рµ Р°СЃСЃРѕС†РёР°С†РёРё
 PUT /photos/photo/id
 
 <entry>
 	<photo><link></link></photo>
 	<associations>
 		<word></word>
-			…
+			вЂ¦
 	</associations>
 	<author></author>
 </entry>
-200 ОК
+200 РћРљ
 
-5.	Удалить фото и все связи
+5.	РЈРґР°Р»РёС‚СЊ С„РѕС‚Рѕ Рё РІСЃРµ СЃРІСЏР·Рё
 DELETE /photos/photo/id
 <entry>
 	<photo><link></link></photo>
 	<editor></editor>
 </entry>
-200 ОК, если автор, если не автор то
+200 РћРљ, РµСЃР»Рё Р°РІС‚РѕСЂ, РµСЃР»Рё РЅРµ Р°РІС‚РѕСЂ С‚Рѕ
 403 Forbidden
 
-6.	Получить все фото по ассоциациям 
+6.	РџРѕР»СѓС‡РёС‚СЊ РІСЃРµ С„РѕС‚Рѕ РїРѕ Р°СЃСЃРѕС†РёР°С†РёСЏРј 
 GET /photos/associations
 <associations>
 	<word></word>
-	…
+	вЂ¦
 </associations>
-Ответ:200 ОК
+РћС‚РІРµС‚:200 РћРљ
 <photos>
 	<entry>
 		<photo>
@@ -101,8 +101,8 @@ GET /photos/associations
 			<author></author>
 			<word></word>
 		</word-entry>
-				…
+				вЂ¦
 		</associations>
 	</entry>
-	…
+	вЂ¦
 </photos>
