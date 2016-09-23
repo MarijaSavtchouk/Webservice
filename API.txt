@@ -1,0 +1,108 @@
+1.	ƒобавить фото с набором ассоциаций (может и не быть ассоциаций, просто фото)
+POST /photos HTTP/1.1
+<entry>
+	<photo></photo>
+	<author></author>
+	<associations> 
+		<word></word>
+		Е
+		<word></word>
+	</associations>
+</entry>
+ќтвет:
+HTTP /1.1 201 Created
+Location http://photoes/photo/id
+<entry>
+	<photo><link>Е</link></photo>
+	<author>Е</author>
+	<associations> 
+		<word>Е</word>
+			Е
+		<word>Е</word>
+	</associations>
+</entry>
+
+2.	ѕолучить конкретное фото с ассоциаци€ми
+(не об€зательно id, может быть link)
+	GET /photos/photo/id HTTP/1.1
+	ќтвет:
+	304 not modified или 200 ќ  с телом
+<entry>
+	<photo>
+		<link></link>
+		<author></author>
+	</photo>
+	<associations> 
+		<word-entry>
+			<author></author>
+			<word></word>
+		</word-entry>
+		Е
+	</associations>
+</entry>
+
+3.	ѕолучить все фото со всеми ассоциаци€ми
+GET /photos/all
+ќтвет:200 ќ 
+<photos>
+	<entry>
+		<photo>
+			<link></link>
+			<author></author>
+		</photo>
+	<associations>
+		<word-entry>
+			<author></author>
+			<word></word>
+		</word-entry>
+				Е
+	</associations>
+	</entry>
+	...
+</photos>
+
+4.	ƒобавить новые ассоциации
+PUT /photos/photo/id
+
+<entry>
+	<photo><link></link></photo>
+	<associations>
+		<word></word>
+			Е
+	</associations>
+	<author></author>
+</entry>
+200 ќ 
+
+5.	”далить фото и все св€зи
+DELETE /photos/photo/id
+<entry>
+	<photo><link></link></photo>
+	<editor></editor>
+</entry>
+200 ќ , если автор, если не автор то
+403 Forbidden
+
+6.	ѕолучить все фото по ассоциаци€м 
+GET /photos/associations
+<associations>
+	<word></word>
+	Е
+</associations>
+ќтвет:200 ќ 
+<photos>
+	<entry>
+		<photo>
+			<link></link>
+			<author></author>
+		</photo>
+		<associations>
+		<word-entry>
+			<author></author>
+			<word></word>
+		</word-entry>
+				Е
+		</associations>
+	</entry>
+	Е
+</photos>
