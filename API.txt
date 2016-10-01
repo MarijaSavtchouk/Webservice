@@ -11,7 +11,7 @@ POST /photos HTTP/1.1
 </entry>
 Ответ:
 HTTP /1.1 201 Created
-Location http://photoes/photo/id
+Location http://photoes/id
 <entry>
 	<photo><link>…</link></photo>
 	<author>…</author>
@@ -24,7 +24,10 @@ Location http://photoes/photo/id
 
 2.	Получить конкретное фото с ассоциациями
 (не обязательно id, может быть link)
-	GET /photos/photo/id HTTP/1.1
+имеется в виду, что возвращённый при создании в теле link
+т.е /photos/link, а на самом деле link это будет id
+	GET /photos/id HTTP/1.1
+	If-Modefied-Since:
 	Ответ:
 	304 not modified или 200 ОК с телом
 <entry>
@@ -42,7 +45,7 @@ Location http://photoes/photo/id
 </entry>
 
 3.	Получить все фото со всеми ассоциациями
-GET /photos/all
+GET /photos
 Ответ:200 ОК
 <photos>
 	<entry>
@@ -60,9 +63,9 @@ GET /photos/all
 	</entry>
 	...
 </photos>
-
+Word-entry - это слово с автором, word - просот одна ассоциация
 4.	Добавить новые ассоциации
-PUT /photos/photo/id
+POST /photos/id/associations
 
 <entry>
 	<photo><link></link></photo>
@@ -75,7 +78,7 @@ PUT /photos/photo/id
 200 ОК
 
 5.	Удалить фото и все связи
-DELETE /photos/photo/id
+DELETE /photos/id
 <entry>
 	<photo><link></link></photo>
 	<editor></editor>
@@ -84,11 +87,7 @@ DELETE /photos/photo/id
 403 Forbidden
 
 6.	Получить все фото по ассоциациям 
-GET /photos/associations
-<associations>
-	<word></word>
-	…
-</associations>
+GET /photos/?associations=...
 Ответ:200 ОК
 <photos>
 	<entry>
@@ -106,3 +105,5 @@ GET /photos/associations
 	</entry>
 	…
 </photos>
+Фото планируется и получать и одавать везде, где есть фото, я просто не знала, как это обозначить
+Выбран REST, так как ихзначально предполагалось, что тут всё есть ресурс
