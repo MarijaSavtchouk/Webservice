@@ -1,0 +1,109 @@
+﻿1.	Добавить фото с набором ассоциаций (может и не быть ассоциаций, просто фото)
+POST /photos HTTP/1.1
+<entry>
+	<photo></photo>
+	<author></author>
+	<associations> 
+		<word></word>
+		…
+		<word></word>
+	</associations>
+</entry>
+Ответ:
+HTTP /1.1 201 Created
+Location http://photoes/id
+<entry>
+	<photo><link>…</link></photo>
+	<author>…</author>
+	<associations> 
+		<word>…</word>
+			…
+		<word>…</word>
+	</associations>
+</entry>
+
+2.	Получить конкретное фото с ассоциациями
+(не обязательно id, может быть link)
+имеется в виду, что возвращённый при создании в теле link
+т.е /photos/link, а на самом деле link это будет id
+	GET /photos/id HTTP/1.1
+	If-Modefied-Since:
+	Ответ:
+	304 not modified или 200 ОК с телом
+<entry>
+	<photo>
+		<link></link>
+		<author></author>
+	</photo>
+	<associations> 
+		<word-entry>
+			<author></author>
+			<word></word>
+		</word-entry>
+		…
+	</associations>
+</entry>
+
+3.	Получить все фото со всеми ассоциациями
+GET /photos
+Ответ:200 ОК
+<photos>
+	<entry>
+		<photo>
+			<link></link>
+			<author></author>
+		</photo>
+	<associations>
+		<word-entry>
+			<author></author>
+			<word></word>
+		</word-entry>
+				…
+	</associations>
+	</entry>
+	...
+</photos>
+Word-entry - это слово с автором, word - просот одна ассоциация
+4.	Добавить новые ассоциации
+POST /photos/id/associations
+
+<entry>
+	<photo><link></link></photo>
+	<associations>
+		<word></word>
+			…
+	</associations>
+	<author></author>
+</entry>
+200 ОК
+
+5.	Удалить фото и все связи
+DELETE /photos/id
+<entry>
+	<photo><link></link></photo>
+	<editor></editor>
+</entry>
+200 ОК, если автор, если не автор то
+403 Forbidden
+
+6.	Получить все фото по ассоциациям 
+GET /photos/?associations=...
+Ответ:200 ОК
+<photos>
+	<entry>
+		<photo>
+			<link></link>
+			<author></author>
+		</photo>
+		<associations>
+		<word-entry>
+			<author></author>
+			<word></word>
+		</word-entry>
+				…
+		</associations>
+	</entry>
+	…
+</photos>
+Фото планируется и получать и одавать везде, где есть фото, я просто не знала, как это обозначить
+Выбран REST, так как ихзначально предполагалось, что тут всё есть ресурс
