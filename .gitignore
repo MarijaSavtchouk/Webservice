@@ -1,2 +1,5 @@
 FastcgiHello/logs
-AApp
+AApp/AApp/replication_info
+AApp/AApp/replication
+AApp/AApp/conflicts
+AApp/AApp/libapp.so

@@ -1,0 +1,52 @@
+1.	Добавить фото с набором ассоциаций (может и не быть ассоциаций, просто фото)
+POST /photos HTTP/1.1
+201 Created
+{
+"photo":"",
+"author":""
+"associations":[]
+}
+Response:
+{"id":""}
+
+2.	Получить конкретное фото с ассоциациями
+(не обязательно id, может быть link)
+имеется в виду, что возвращённый при создании в теле link
+т.е /photos/id
+Responce 200 OK
+{
+	"id":""
+	"photo":"",
+	"author":""
+	"associations":[{"author":"", "association":""}]
+}
+
+4.	Добавить новые ассоциации
+POST /photos/id/associations
+
+{
+"author":"",
+"associations":[]
+}
+Responce
+{
+	"id":""
+	"photo":"",
+	"author":""
+	"associations":[{"author":"", "association":""}]
+}
+200 ОК
+
+5.	Получить все фото по ассоциациям 
+GET /photos?associations=...
+Ответ:200 ОК
+Responce
+{
+"values":[
+	{"id":""
+	"photo":"",
+	"author":""
+	"associations":[{"author":"", "association":""}]}, 
+	{},
+	{}...]
+}
